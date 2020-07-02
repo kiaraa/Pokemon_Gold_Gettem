@@ -1,0 +1,18 @@
+{
+  "trainers": [
+    {
+      "name" : "JOEY",
+      "class" : "YOUNGSTER",
+      "id" : 1,
+      "location" : "Route 30",
+      "party_size" : 1,
+      "pokemon": [
+        {
+          "species" : "RATTATTA",
+          "level" : 4,
+          "moveset" : ["TACKLE", "TAIL_WHIP", null, null]
+        }
+      ]
+    }
+  ]
+}
