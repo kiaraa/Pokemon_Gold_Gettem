@@ -2,11 +2,30 @@
   "trainers": [
     {
       "name" : "JOEY",
-      "class" : "YOUNGSTER",
+      "category" : "YOUNGSTER",
       "id" : 1,
       "location" : "Route 30",
-      "party_size" : 1,
+      "party_size" : 0,
       "pokemon": [
+        {
+          "species" : "RATTATTA",
+          "level" : 4,
+          "moveset" : ["TACKLE", "TAIL_WHIP", null, null]
+        }
+      ]
+    },
+    {
+      "name" : "MIKEY",
+      "category" : "YOUNGSTER",
+      "id" : 2,
+      "location" : "Route 30",
+      "party_size" : 2,
+      "pokemon": [
+        {
+          "species" : "PIDGEY",
+          "level" : 2,
+          "moveset" : ["GUST", "SAND_ATTACK"]
+        },
         {
           "species" : "RATTATTA",
           "level" : 4,
