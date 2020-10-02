@@ -5,12 +5,12 @@
       "category" : "YOUNGSTER",
       "id" : 1,
       "location" : "Route 30",
-      "party_size" : 0,
+      "party_size" : 1,
       "pokemon": [
         {
           "species" : "RATTATTA",
           "level" : 4,
-          "moveset" : ["TACKLE", "TAIL_WHIP", null, null]
+          "moveset" : ["TACKLE", "TAIL_WHIP", "QUICK_ATTACK", null]
         }
       ]
     },
@@ -29,7 +29,7 @@
         {
           "species" : "RATTATTA",
           "level" : 4,
-          "moveset" : ["TACKLE", "TAIL_WHIP", null, null]
+          "moveset" : ["TACKLE", "TAIL_WHIP", "QUICK_ATTACK", null]
         }
       ]
     }

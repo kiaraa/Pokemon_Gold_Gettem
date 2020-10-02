@@ -20,6 +20,8 @@ class TrainerEditor:
         return trainer
 
 
+
+# for testing
 if __name__ == '__main__':
     editor = TrainerEditor()
     print(editor.get_trainer_object(0))
