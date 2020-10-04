@@ -46,6 +46,16 @@ class PokemonEditor:
         }
         self.pyboy_instance.set_memory_value(move_slot_address[party_slot][move_slot], move_hex)
 
+    def edit_player_pokemon_move(self, party_slot, move_slot, move_hex):
+        move_slot_address = {
+            0: {0: 55852, 1: 55853, 2: 55854, 3: 55855},
+            1: {0: 55900, 1: 55901, 2: 55902, 3: 55903},
+            2: {0: 55948, 1: 55949, 2: 55950, 3: 55951},
+            3: {0: 55996, 1: 55997, 2: 55998, 3: 55999},
+            4: {0: 56044, 1: 56045, 2: 56046, 3: 56047},
+            5: {0: 56092, 1: 56093, 2: 56094, 3: 56095}
+        }
+        self.pyboy_instance.set_memory_value(move_slot_address[party_slot][move_slot], move_hex)
 
 #testing
 if __name__ == '__main__':
@@ -59,7 +69,11 @@ if __name__ == '__main__':
     for i in range(31):
         pyboy.tick()
 
-    poke_editor.edit_player_pokemon_species(0, 150)
+    poke_editor.edit_player_pokemon_species(0, 1)
+    poke_editor.edit_player_pokemon_move(0, 0, 126)
+    poke_editor.edit_player_pokemon_move(0, 1, 86)
+    pyboy.set_memory_value(55881, 100)
+
 
     pyboy.send_input(WindowEvent.PRESS_BUTTON_A)
     for i in range(31):
@@ -67,11 +81,17 @@ if __name__ == '__main__':
 
     pyboy.send_input(WindowEvent.RELEASE_BUTTON_A)
 
-    for i in range(175):
+    #enemy stats are altered on species and level, player are not
+
+    for i in range(250):
         pyboy.tick()
 
-    poke_editor.edit_opponent_pokemon(0, 144)
-    poke_editor.edit_opponent_pokemon_move(0, 0, 58)
+    poke_editor.edit_opponent_pokemon(0, 161)
+    poke_editor.edit_opponent_pokemon_move(0, 0, 45)
+    poke_editor.edit_opponent_pokemon_move(0, 0, 45)
+    poke_editor.edit_opponent_pokemon_move(0, 0, 45)
+    poke_editor.edit_opponent_pokemon_move(0, 0, 45)
+    pyboy.set_memory_value(56700, 100)
     print("written")
 
 

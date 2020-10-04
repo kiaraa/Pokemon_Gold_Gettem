@@ -68,3 +68,16 @@ class TestPokemonEditor(TestCase):
         altered_state.close()
 
         self.assertEqual(actual_hex, 58)
+
+    def test_change_player_pokemon_first_move_to_psychic(self):
+        pyboy_instance = PyBoy('../ROMs/gamerom.gbc')
+
+        altered_state = open("altered_save_state.state", "r+b")
+        pokemon_editor = PokemonEditor(pyboy_instance)
+        pokemon_editor.edit_player_pokemon_species(0, 150)
+        pokemon_editor.edit_player_pokemon_move(0, 0, 94)
+        pyboy_instance.save_state(altered_state)
+        actual_hex = pyboy_instance.get_memory_value(55852)
+        altered_state.close()
+
+        self.assertEqual(actual_hex, 94)
