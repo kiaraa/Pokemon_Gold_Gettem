@@ -16,4 +16,3 @@ class Test(TestCase):
         trainer = trainer_editor.get_trainer_object(0)
         self.assertEqual(trainer.get_party_size(), 1, "Joey does not have the right amount of pokemon.")
 
-
