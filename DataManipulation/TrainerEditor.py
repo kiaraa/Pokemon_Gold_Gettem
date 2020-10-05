@@ -1,6 +1,7 @@
 import json
 
 from Beans.Trainer import Trainer
+from Beans.Pokemon import Pokemon
 
 
 class TrainerEditor:
@@ -24,4 +25,10 @@ class TrainerEditor:
 # for testing
 if __name__ == '__main__':
     editor = TrainerEditor()
-    print(editor.get_trainer_object(0))
+    trainer = editor.get_trainer_object(0)
+    print(trainer.get_name())
+    print(trainer.get_category())
+    print(trainer.get_id())
+    print(trainer.get_location())
+    print(trainer.get_party_size())
+    print(trainer.get_party())

@@ -49,7 +49,7 @@ class TestPokemonEditor(TestCase):
 
         altered_state = open("altered_save_state.state", "r+b")
         pokemon_editor = PokemonEditor(pyboy_instance)
-        pokemon_editor.edit_player_pokemon_species(0, 'MEWTWO')
+        pokemon_editor.assign_player_pokemon_species(0, 'MEWTWO')
         pyboy_instance.save_state(altered_state)
         actual_hex = pyboy_instance.get_memory_value(55850)
         altered_state.close()
@@ -62,7 +62,7 @@ class TestPokemonEditor(TestCase):
         altered_state = open("altered_save_state.state", "r+b")
         pokemon_editor = PokemonEditor(pyboy_instance)
         pokemon_editor.edit_opponent_pokemon(0, 'ARTICUNO')
-        pokemon_editor.edit_opponent_pokemon_move(0, 0, 58)
+        pokemon_editor.edit_opponent_pokemon_move(0, 0, 'ICE_BEAM')
         pyboy_instance.save_state(altered_state)
         actual_hex = pyboy_instance.get_memory_value(56671)
         altered_state.close()
@@ -74,7 +74,7 @@ class TestPokemonEditor(TestCase):
 
         altered_state = open("altered_save_state.state", "r+b")
         pokemon_editor = PokemonEditor(pyboy_instance)
-        pokemon_editor.edit_player_pokemon_species(0, 'MEWTWO')
+        pokemon_editor.assign_player_pokemon_species(0, 'MEWTWO')
         pokemon_editor.edit_player_pokemon_move(0, 0, 'PSYCHIC')
         pyboy_instance.save_state(altered_state)
         actual_hex = pyboy_instance.get_memory_value(55852)

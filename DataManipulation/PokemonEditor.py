@@ -142,6 +142,129 @@ class PokemonEditor:
             }
         }
 
+        self.opponent_slot_info_dict = {
+            0: {
+                'species': int('DD5D', 16),
+                'max hp': int('DD82', 16),
+                'attack': int('DD84', 16),
+                'defense': int('DD86', 16),
+                'sp attack': int('DD8A', 16),
+                'sp defense': int('DD8C', 16),
+                'speed': int('DD88', 16),
+                'move 1': int('DD5F', 16),
+                'move 2': int('DD60', 16),
+                'move 3': int('DD61', 16),
+                'move 4': int('DD62', 16),
+                'move 1 pp': int('DD74', 16),
+                'move 2 pp': int('DD75', 16),
+                'move_3_pp': int('DD76', 16),
+                'move_4_pp': int('DD77', 16),
+                'current_hp': int('DD80', 16),
+                'level': int('DD7C', 16),
+                'experience': int('DD67', 16)
+            },
+            1: {
+                'species': int('DD8D', 16),
+                'max hp': int('DDB2', 16),
+                'attack': int('DDB4', 16),
+                'defense': int('DDB6', 16),
+                'sp attack': int('DDBA', 16),
+                'sp defense': int('DDBC', 16),
+                'speed': int('DDB8', 16),
+                'move 1': int('DD8F', 16),
+                'move 2': int('DD90', 16),
+                'move 3': int('DD91', 16),
+                'move 4': int('DD92', 16),
+                'move 1 pp': int('DDA4', 16),
+                'move 2 pp': int('DDA5', 16),
+                'move_3_pp': int('DDA6', 16),
+                'move_4_pp': int('DDA7', 16),
+                'current_hp': int('DDB0', 16),
+                'level': int('DDAC', 16),
+                'experience': int('DD97', 16)
+            },
+            2: {
+                'species': int('DDBD', 16),
+                'max hp': int('DDE2', 16),
+                'attack': int('DDE4', 16),
+                'defense': int('DDE6', 16),
+                'sp attack': int('DDEA', 16),
+                'sp defense': int('DDEC', 16),
+                'speed': int('DDE8', 16),
+                'move 1': int('DDBF', 16),
+                'move 2': int('DDC0', 16),
+                'move 3': int('DDC1', 16),
+                'move 4': int('DDC2', 16),
+                'move 1 pp': int('DDD4', 16),
+                'move 2 pp': int('DDD5', 16),
+                'move_3_pp': int('DDD6', 16),
+                'move_4_pp': int('DDD7', 16),
+                'current_hp': int('DDE0', 16),
+                'level': int('DDDC', 16),
+                'experience': int('DDC7', 16)
+            },
+            3: {
+                'species': int('DDED', 16),
+                'max hp': int('DE12', 16),
+                'attack': int('DE14', 16),
+                'defense': int('DE16', 16),
+                'sp attack': int('DE1A', 16),
+                'sp defense': int('DE1C', 16),
+                'speed': int('DE18', 16),
+                'move 1': int('DDEF', 16),
+                'move 2': int('DDF0', 16),
+                'move 3': int('DDF1', 16),
+                'move 4': int('DDF2', 16),
+                'move 1 pp': int('DE04', 16),
+                'move 2 pp': int('DE05', 16),
+                'move_3_pp': int('DE06', 16),
+                'move_4_pp': int('DE07', 16),
+                'current_hp': int('DE10', 16),
+                'level': int('DE0C', 16),
+                'experience': int('DDF7', 16)
+            },
+            4: {
+                'species': int('DE1D', 16),
+                'max hp': int('DE42', 16),
+                'attack': int('DE44', 16),
+                'defense': int('DE46', 16),
+                'sp attack': int('DE4A', 16),
+                'sp defense': int('DE4C', 16),
+                'speed': int('DE48', 16),
+                'move 1': int('DE1F', 16),
+                'move 2': int('DE20', 16),
+                'move 3': int('DE21', 16),
+                'move 4': int('DE22', 16),
+                'move 1 pp': int('DE34', 16),
+                'move 2 pp': int('DE35', 16),
+                'move_3_pp': int('DE36', 16),
+                'move_4_pp': int('DE37', 16),
+                'current_hp': int('DE40', 16),
+                'level': int('DE3C', 16),
+                'experience': int('DE27', 16)
+            },
+            5: {
+                'species': int('DE4D', 16),
+                'max hp': int('DE72', 16),
+                'attack': int('DE74', 16),
+                'defense': int('DE76', 16),
+                'sp attack': int('DE7A', 16),
+                'sp defense': int('DE7C', 16),
+                'speed': int('DE47', 16),
+                'move 1': int('DE4F', 16),
+                'move 2': int('DE50', 16),
+                'move 3': int('DE51', 16),
+                'move 4': int('DE52', 16),
+                'move 1 pp': int('DE64', 16),
+                'move 2 pp': int('DE65', 16),
+                'move_3_pp': int('DE66', 16),
+                'move_4_pp': int('DE67', 16),
+                'current_hp': int('DE70', 16),
+                'level': int('DE6C', 16),
+                'experience': int('DE57', 16)
+            }
+        }
+
         self.pokemon_data_dict = {}
         with open('../res/pokemon_hex_values.csv', 'r') as pkmn_data:
             csv_reader = csv.reader(pkmn_data)
@@ -160,6 +283,8 @@ class PokemonEditor:
 
                 self.move_data_dict[row[0]] = info_dict
 
+##########################################################
+
     def edit_opponent_pokemon(self, party_slot, species_name):
         species_hex = str(self.pokemon_data_dict[species_name]['hex'])
         species_dec = int(species_hex, 16)
@@ -167,22 +292,19 @@ class PokemonEditor:
         self.pyboy_instance.set_memory_value(self.opponent_pokemon_species_slot_addresses[party_slot], species_dec)
 
     #TODO -- Change name to species name as well
-    def edit_player_pokemon_species(self, party_slot, species_name):
+    def assign_player_pokemon_species(self, party_slot, species_name):
         species_hex = str(self.pokemon_data_dict[species_name]['hex'])
         species_dec = int(species_hex, 16)
 
         self.pyboy_instance.set_memory_value(self.player_slot_info_dict[party_slot]['species'], species_dec)
 
-    def edit_opponent_pokemon_move(self, party_slot, move_slot, move_hex):
-        move_slot_address = {
-            0: {0: 56671, 1: 56672, 2: 56673, 3: 56674},
-            1: {0: 56719, 1: 56720, 2: 56721, 3: 56722},
-            2: {0: 56767, 1: 56768, 2: 56769, 3: 56770},
-            3: {0: 56815, 1: 56816, 2: 56817, 3: 56818},
-            4: {0: 56863, 1: 56864, 2: 56865, 3: 56866},
-            5: {0: 56911, 1: 56912, 2: 56913, 3: 56914}
-        }
-        self.pyboy_instance.set_memory_value(move_slot_address[party_slot][move_slot], move_hex)
+    def edit_opponent_pokemon_move(self, party_slot, move_slot, move_name):
+        move_hex = str(self.move_data_dict[move_name]['hex'])
+        move_dec = int(move_hex, 16)
+
+        move_key = "move " + str((move_slot + 1))
+        
+        self.pyboy_instance.set_memory_value(self.opponent_slot_info_dict[party_slot][move_key], move_dec)
 
     def edit_player_pokemon_move(self, party_slot, move_slot, move_name):
         move_hex = str(self.move_data_dict[move_name]['hex'])
@@ -192,13 +314,20 @@ class PokemonEditor:
 
         self.pyboy_instance.set_memory_value(self.player_slot_info_dict[party_slot][move_key], move_dec)
 
-#TODO -- assign player name
+#TODO -- assign player pokemon name
     def assign_player_pokemon(self, party_slot, species_name, level, move_1, move_2, move_3, move_4):
-        self.edit_player_pokemon_species(party_slot, species_name)
+        self.assign_player_pokemon_species(party_slot, species_name)
         self.assign_player_stats(party_slot, species_name, level)
         self.assign_player_current_hp(party_slot, species_name, level)
         self.assign_player_level(party_slot, level)
         self.assign_player_moves(party_slot, move_1, move_2, move_3, move_4)
+        
+    def assign_opponent_pokemon(self, party_slot, species_name, level, move_1, move_2, move_3, move_4):
+        self.assign_opponent_pokemon_species(party_slot, species_name)
+        self.assign_opponent_stats(party_slot, species_name, level)
+        self.assign_opponent_current_hp(party_slot, species_name, level)
+        self.assign_opponent_level(party_slot, level)
+        self.assign_opponent_moves(party_slot, move_1, move_2, move_3, move_4)
 
     def calculate_hp_stat(self, species_name, level):
         base_hp = self.pokemon_data_dict[species_name]['hp']
@@ -245,6 +374,50 @@ class PokemonEditor:
         slot_2_address = self.player_slot_info_dict[party_slot]['move 2']
         slot_3_address = self.player_slot_info_dict[party_slot]['move 3']
         slot_4_address = self.player_slot_info_dict[party_slot]['move 4']
+
+        move_1_hex = self.move_data_dict[move_1]['hex']
+        move_2_hex = self.move_data_dict[move_2]['hex']
+        move_3_hex = self.move_data_dict[move_3]['hex']
+        move_4_hex = self.move_data_dict[move_4]['hex']
+
+        self.pyboy_instance.set_memory_value(slot_1_address, int(str(move_1_hex), 16))
+        self.pyboy_instance.set_memory_value(slot_2_address, int(str(move_2_hex), 16))
+        self.pyboy_instance.set_memory_value(slot_3_address, int(str(move_3_hex), 16))
+        self.pyboy_instance.set_memory_value(slot_4_address, int(str(move_4_hex), 16))
+
+    def assign_opponent_pokemon_species(self, party_slot, species_name):
+        species_hex = str(self.pokemon_data_dict[species_name]['hex'])
+        species_dec = int(species_hex, 16)
+
+        self.pyboy_instance.set_memory_value(self.opponent_slot_info_dict[party_slot]['species'], species_dec)
+
+    def assign_opponent_stats(self, party_slot, species_name, level):
+        hp = self.calculate_hp_stat(species_name, level)
+        atk = self.calculate_non_hp_stat(species_name, level, 'atk')
+        defense = self.calculate_non_hp_stat(species_name, level, 'def')
+        spatk = self.calculate_non_hp_stat(species_name, level, 'spatk')
+        sdef = self.calculate_non_hp_stat(species_name, level, 'spdef')
+        spd = self.calculate_non_hp_stat(species_name, level, 'spd')
+
+        self.pyboy_instance.set_memory_value(self.opponent_slot_info_dict[party_slot]['max hp'], hp)
+        self.pyboy_instance.set_memory_value(self.opponent_slot_info_dict[party_slot]['attack'], atk)
+        self.pyboy_instance.set_memory_value(self.opponent_slot_info_dict[party_slot]['defense'], defense)
+        self.pyboy_instance.set_memory_value(self.opponent_slot_info_dict[party_slot]['sp attack'], spatk)
+        self.pyboy_instance.set_memory_value(self.opponent_slot_info_dict[party_slot]['sp defense'], sdef)
+        self.pyboy_instance.set_memory_value(self.opponent_slot_info_dict[party_slot]['speed'], spd)
+
+    def assign_opponent_current_hp(self, party_slot, species_name, level):
+        current_hp = self.calculate_hp_stat(species_name, level)
+        self.pyboy_instance.set_memory_value(self.opponent_slot_info_dict[party_slot]['current hp'], current_hp)
+
+    def assign_opponent_level(self, party_slot, level):
+        self.pyboy_instance.set_memory_value(self.opponent_slot_info_dict[party_slot]['level'], level)
+
+    def assign_opponent_moves(self, party_slot, move_1, move_2, move_3, move_4):
+        slot_1_address = self.opponent_slot_info_dict[party_slot]['move 1']
+        slot_2_address = self.opponent_slot_info_dict[party_slot]['move 2']
+        slot_3_address = self.opponent_slot_info_dict[party_slot]['move 3']
+        slot_4_address = self.opponent_slot_info_dict[party_slot]['move 4']
 
         move_1_hex = self.move_data_dict[move_1]['hex']
         move_2_hex = self.move_data_dict[move_2]['hex']
